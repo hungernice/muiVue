@@ -29,9 +29,6 @@
 </script>
 
 <style>
-	.router-link-exact-active{
-		color: #fff;
-	    background-color: #428bca;
-	}
+
 
 </style>

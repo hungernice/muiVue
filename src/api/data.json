@@ -1,0 +1,53 @@
+{
+	"nav1" :[
+		{
+			"name": "导航一",
+			"path": "/nav1"
+		},
+		{
+			"name": "Reports",
+			"path": "/reports"
+		},
+		{
+			"name": "Analytics",
+			"path": "/analytics"
+		},
+		{
+			"name": "Export",
+			"path": "/export"
+		}		
+	],
+	"nav2": [
+		{
+			"name": "资产管理",
+			"path": "/nav1"
+		},
+		{
+			"name": "Nav item again",
+			"path": "/again"
+		},
+		{
+			"name": "One more nav",
+			"path": "/more"
+		},
+		{
+			"name": "Another nav item",
+			"path": "/another"
+		}		
+	],
+	"nav3":[
+		{
+			"name": "导航三",
+			"path": "/nav3"
+		},
+		{
+			"name": "关于我们",
+			"path": "/about"
+		},
+		{
+			"name": "联系我们",
+			"path": "/connect"
+		}		
+	]
+}	
+

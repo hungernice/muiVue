@@ -24,14 +24,26 @@ export default {
 			path: '/reports',
 			component: Reports
 		},
+//		{
+//			path:"/nav2",
+//			component: T3,
+//			children:[
+//				{ path:"/t1", component: T1 },
+//				{ path:"/t2", component: T2 },
+//				{ path:"/t3", component: T3 }
+//			]
+//		},
 		{
-			path:"",
-			component: T1,
-			children:[
-				{ path:"/nav2/t1", component: T1 },
-				{ path:"/nav2/t2", component: T2 },
-				{ path:"/nav2/t3", component: T3 }
-			]
+			path: "/nav2/t1",
+			component: T1
+		},
+		{
+			path: "/nav2/t2",
+			component: T2
+		},
+		{
+			path: "/nav2/t3",
+			component: T3
 		},
 		{
 			path:"/again",
