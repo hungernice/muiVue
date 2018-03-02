@@ -20,7 +20,21 @@
 	"nav2": [
 		{
 			"name": "资产管理",
-			"path": "/nav1"
+			"path": "/nav1",
+			"children": [
+				{
+					"name": "查看资产组",
+					"path": "/nav2/t1"
+				},
+				{
+					"name": "查看资产",
+					"path": "/nav2/t2"
+				},
+				{
+					"name": "查看机房",
+					"path":"/nav2/t3"
+				}
+			]
 		},
 		{
 			"name": "Nav item again",

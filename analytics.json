@@ -1,0 +1,35 @@
+{
+	"analyData": [
+		{
+			"op": "徐南航",
+			"baseVersion": "1.0.1",
+			"lastVersion": "1.0.2",
+			"newDate": "2018-3-2",
+			"newDate": "2018-3-2",
+			"lineDate": "2018-3-3",
+			"qa": "徐南航",
+			"rd": "徐南航",
+			"servicename": "oa"
+		}, {
+			"op": "张三",
+			"baseVersion": "1.0.8",
+			"lastVersion": "1.0.9",
+			"newDate": "2018-2-2",
+			"newDate": "2018-3-1",
+			"lineDate": "2018-3-3",
+			"qa": "张三",
+			"rd": "张三",
+			"servicename": "app"
+		}, {
+			"op": "李四",
+			"baseVersion": "1.0.5",
+			"lastVersion": "2.0.2",
+			"newDate": "2018-1-6",
+			"newDate": "2018-3-2",
+			"lineDate": "2018-3-2",
+			"qa": "李四",
+			"rd": "李四",
+			"servicename": "opp"
+		}
+	]
+}

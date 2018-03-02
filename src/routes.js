@@ -1,5 +1,6 @@
 import Nav1 from './components/nav1/Nav1.vue'
 import Reports from './components/nav1/Reports.vue'
+import Analytics from './components/nav1/Analytics.vue'
 import Again from './components/nav2/Again.vue'
 import Another from './components/nav2/Another.vue'
 import More from './components/nav2/More.vue'
@@ -9,6 +10,7 @@ import T3 from './components/nav2/T3.vue'
 import Nav3 from './components/nav3/Nav3.vue'
 import About from './components/nav3/About.vue'
 import Connect from './components/nav3/Connect.vue'
+
 export default {
 	mode: 'history',
 	routes:[
@@ -24,15 +26,10 @@ export default {
 			path: '/reports',
 			component: Reports
 		},
-//		{
-//			path:"/nav2",
-//			component: T3,
-//			children:[
-//				{ path:"/t1", component: T1 },
-//				{ path:"/t2", component: T2 },
-//				{ path:"/t3", component: T3 }
-//			]
-//		},
+		{
+			path:'/analytics',
+			component: Analytics
+		},
 		{
 			path: "/nav2/t1",
 			component: T1

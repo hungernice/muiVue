@@ -1,7 +1,11 @@
 import Vue from 'vue'
 import axios from 'axios'
-Vue.use(axios)
-const url ="./data.json"
-export const requestLogin =function(){
-	return axios.get("./data.json").then(res => res.data);
+
+//const url ="./data.json"
+
+export const getNav =function(){
+	return axios.get("/data.json").then(res => res.data)
+}
+export const getAnaly =function(){
+	return axios.get("/analytics.json").then(res =>res.data)
 }

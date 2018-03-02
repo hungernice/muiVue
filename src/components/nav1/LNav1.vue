@@ -1,20 +1,7 @@
 <template>
 	<ul class="nav nav-sidebar">
-		<li>
-			
-			<router-link to="/nav1" >导航一</router-link>
-		</li>
-		<li>
-			
-			<router-link to="/reports" >Reports</router-link>
-		</li>
-		<li>
-			<router-link to="/analytics" >Analytics</router-link>
-			
-		</li>
-		<li>
-			<router-link to="/export" >Export</router-link>
-			
+		<li v-for="item in navArr">
+			<router-link :to="item.path" v-text="item.name"></router-link>
 		</li>
 		
 	</ul>
@@ -24,34 +11,23 @@
 </template>
 
 <script>
-	import { requestLogin } from '../../api/navApi.js';
-	console.log(requestLogin)
-//	console.log(requestLogin)
+	import { getNav } from '../../api/navApi.js';
 	export default {
 		data(){
 			return {
-				nav: ""
+				navArr: {}
 			}
 		},
 		methods:{
-			myajax: function() { 
-				requestLogin().then((res)=>{
-					console.log(res)
-				})
-					
-				
-//				requestLogin()
-//              this.$http.get("/ajaxurl/welfare/gpa/index/index").then(response => {  
-//                  console.log("获取信息成功")  
-//                  console.log(response);  
-//              }, response => {  
-//                  console.log("获取信息失败")  
-//                  console.log(response);  
-//              })  
-            }  		
+			
 		},
 		mounted(){
-			this.myajax()
+				getNav().then((res)=>{
+					var Navdata =res.nav1									
+					this.navArr = Object.assign( {}, Navdata)
+				}).catch((err)=>{
+					console.log(err)
+				})
 		}
 	}
 </script>
