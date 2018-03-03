@@ -1,6 +1,7 @@
 import Nav1 from './components/nav1/Nav1.vue'
 import Reports from './components/nav1/Reports.vue'
 import Analytics from './components/nav1/Analytics.vue'
+import Export from './components/nav1/Export.vue'
 import Again from './components/nav2/Again.vue'
 import Another from './components/nav2/Another.vue'
 import More from './components/nav2/More.vue'
@@ -10,7 +11,7 @@ import T3 from './components/nav2/T3.vue'
 import Nav3 from './components/nav3/Nav3.vue'
 import About from './components/nav3/About.vue'
 import Connect from './components/nav3/Connect.vue'
-
+import Login from './components/Login.vue'
 export default {
 	mode: 'history',
 	routes:[
@@ -29,6 +30,10 @@ export default {
 		{
 			path:'/analytics',
 			component: Analytics
+		},
+		{
+			path:"/export",
+			component: Export
 		},
 		{
 			path: "/nav2/t1",

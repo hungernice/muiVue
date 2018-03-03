@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-
+import * as echarts from 'echarts';
 Vue.use(VueRouter)
 
 import routes from './routes.js'
