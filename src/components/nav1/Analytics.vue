@@ -1,6 +1,7 @@
 <template>
 	<div>
-		<table class="table table-bordered table-hover table-striped">
+		<Search @setInput="getInput"></Search>
+		<table class="table table-bordered table-hover table-striped" id="tableId">
 			<thead>
 				<tr>
 					<th class="text-center">
@@ -31,15 +32,21 @@
 					<td class="text-center">{{item.op}}</td>
 					<td class="text-center">{{item.rd}}</td>
 					<td class="text-center">{{item.newDate}}</td>
-					<td class="text-center">{{item.lineDate}}</td>					
+					<td class="text-center">{{item.lineDate}}</td>
 					<td class="text-center">
 						<button class="btn btn-sm btn-info" @click="edit(index)" data-toggle="modal" data-target="#editModal">编辑</button>
-						<button class="btn btn-sm btn-danger" @click="nowIndex=index" data-toggle = "modal" data-target="#delModal">删除</button>
-					</td>					
+						<button class="btn btn-sm btn-danger" @click="nowIndex=index" data-toggle="modal" data-target="#delModal">删除</button>
+					</td>
+				</tr>
+				<tr v-show="analyData.length ==0">
+					<td colspan="11">
+						<p class="text-warning text-center">暂无数据</p>
+					</td>
 				</tr>
 			</tbody>
 		</table>
-		<button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addModal">新增记录</button>
+		<button class="btn btn-md btn-primary" data-toggle="modal" data-target="#addModal">新增记录</button>
+		
 		<div class="modal fade" tabindex="-1" role="dialog" id="editModal">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -69,31 +76,31 @@
 								<div class="col-sm-5">
 									<input type="text" class="form-control" v-model="modalEdit.lastVersion">
 								</div>
-							</div>		
+							</div>
 							<div class="form-group">
 								<label class="col-sm-3 col-sm-offset-1 control-label">开发负责人</label>
 								<div class="col-sm-5">
 									<input type="text" class="form-control" v-model="modalEdit.qa">
 								</div>
-							</div>	
+							</div>
 							<div class="form-group">
 								<label class="col-sm-3 col-sm-offset-1 control-label">测试负责人</label>
 								<div class="col-sm-5">
 									<input type="text" class="form-control" v-model="modalEdit.op">
 								</div>
-							</div>	
+							</div>
 							<div class="form-group">
 								<label class="col-sm-3 col-sm-offset-1 control-label">运维负责人</label>
 								<div class="col-sm-5">
 									<input type="text" class="form-control" v-model="modalEdit.rd">
 								</div>
-							</div>	
+							</div>
 							<div class="form-group">
 								<label class="col-sm-3 col-sm-offset-1 control-label">更新时间</label>
 								<div class="col-sm-5">
 									<input type="text" class="form-control" v-model="modalEdit.newDate">
 								</div>
-							</div>	
+							</div>
 							<div class="form-group">
 								<label class="col-sm-3 col-sm-offset-1 control-label">上线时间</label>
 								<div class="col-sm-5">
@@ -110,7 +117,7 @@
 			</div>
 		</div>
 		<!--编辑模态框结束-->
-		
+
 		<div class="modal fade" tabindex="-1" id="delModal">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -131,7 +138,7 @@
 			</div>
 		</div>
 		<!--删除模态框结束-->
-		
+
 		<div class="modal fade" id="addModal">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -161,38 +168,38 @@
 								<div class="col-sm-5">
 									<input type="text" class="form-control" v-model="modalAdd.lastVersion">
 								</div>
-							</div>		
+							</div>
 							<div class="form-group">
 								<label class="col-sm-3 col-sm-offset-1 control-label">开发负责人</label>
 								<div class="col-sm-5">
 									<input type="text" class="form-control" v-model="modalAdd.qa">
 								</div>
-							</div>	
+							</div>
 							<div class="form-group">
 								<label class="col-sm-3 col-sm-offset-1 control-label">测试负责人</label>
 								<div class="col-sm-5">
 									<input type="text" class="form-control" v-model="modalAdd.op">
 								</div>
-							</div>	
+							</div>
 							<div class="form-group">
 								<label class="col-sm-3 col-sm-offset-1 control-label">运维负责人</label>
 								<div class="col-sm-5">
 									<input type="text" class="form-control" v-model="modalAdd.rd">
 								</div>
-							</div>	
+							</div>
 							<div class="form-group">
 								<label class="col-sm-3 col-sm-offset-1 control-label">更新时间</label>
 								<div class="col-sm-5">
 									<input type="text" class="form-control" v-model="modalAdd.newDate">
 								</div>
-							</div>	
+							</div>
 							<div class="form-group">
 								<label class="col-sm-3 col-sm-offset-1 control-label">上线时间</label>
 								<div class="col-sm-5">
 									<input type="text" class="form-control" v-model="modalAdd.lineDate">
 								</div>
 							</div>
-						</form>						
+						</form>
 					</div>
 					<div class="modal-footer">
 						<button class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -208,45 +215,50 @@
 
 <script>
 	import { getAnaly } from '../../api/navApi.js';
-	
+	import Search from '../../components/comm/Search.vue'
 	export default {
+		components: {
+			Search
+		},
 		data() {
 			return {
-				analyData: [],	//表格初始数据
-				nowIndex: -10,			
-				modalEdit:{		//编辑数据
+				analyData: [], //表格初始数据
+				nowIndex: -10,
+				modalEdit: { //编辑数据
 					servicename: "",
 					baseVersion: "",
-					lastVersion:"",
+					lastVersion: "",
 					qa: "",
-					op:"",
+					op: "",
 					rd: "",
 					newDate: "",
 					lineDate: "",
 				},
-				modalAdd:{		//编辑数据
+				modalAdd: { //编辑数据
 					servicename: "",
 					baseVersion: "",
-					lastVersion:"",
+					lastVersion: "",
 					qa: "",
-					op:"",
+					op: "",
 					rd: "",
 					newDate: "",
 					lineDate: "",
 				},
-				
+				searchInput: "",
+				isShow: ""
+
 			}
 		},
-		methods:{
-			addItems: function(){		//新增
-				let addData= this.modalAdd
+		methods: {
+			addItems: function() { //新增
+				let addData = this.modalAdd
 				this.analyData.push(addData)
-				this.modalAdd={}		//新增记录后将上一条记录清空
+				this.modalAdd = {} //新增记录后将上一条记录清空
 			},
-			edit: function(nowIndex){		//点击编辑
-				this.nowIndex =nowIndex
-				let editData =this.analyData[nowIndex]
-				this.modalEdit={
+			edit: function(nowIndex) { //点击编辑
+				this.nowIndex = nowIndex
+				let editData = this.analyData[nowIndex]
+				this.modalEdit = {
 					servicename: editData.servicename,
 					baseVersion: editData.baseVersion,
 					lastVersion: editData.lastVersion,
@@ -254,24 +266,49 @@
 					op: editData.op,
 					rd: editData.rd,
 					newDate: editData.newDate,
-					lineDate: editData.lineDate,					
+					lineDate: editData.lineDate,
 				}
 			},
-			editSubimt: function(){		//编辑
+			editSubimt: function() { //编辑
 				let i = this.nowIndex
-				this.analyData.splice(i, 1, this.modalEdit)				
+				this.analyData.splice(i, 1, this.modalEdit)
 			},
-			delItem: function(){		//删除
+			delItem: function() { //删除
 				let i = this.nowIndex
-				this.analyData.splice(i, 1)		
-				
+				this.analyData.splice(i, 1)
+
+			},
+
+			initData: function() {
+				getAnaly().then((res) => {
+					this.analyData = res.analyData
+				})
+			},
+			getInput: function(matchStr, arg2) {				
+				if(matchStr) {
+					let tArr = this.analyData
+					var ii = null
+					tArr.forEach(function(item, i) {
+						if(matchStr == item.baseVersion || matchStr == item.lastVersion || matchStr == item.lineDate || matchStr == item.servicename || matchStr == item.newDate || matchStr == item.qa || matchStr == item.op || matchStr == item.rd) {
+							ii = i
+						}
+					})
+
+					if(ii == null) {			//没有检索到关键词
+						this.analyData = []							
+					} else {
+						var len = this.analyData.length
+						this.analyData.splice(0, len, this.analyData[ii])
+					}
+
+				} else {
+					this.initData()
+				}
 			}
 		},
-		mounted(){			//vue挂载完毕执行
-			getAnaly().then((res)=>{
-				this.analyData=res.analyData
-			})
-			
+		mounted() { //vue挂载完毕执行
+			this.initData()
+
 		}
 	}
 </script>

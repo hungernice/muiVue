@@ -14,7 +14,7 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td>1,001</td>
+						<td>1001</td>
 						<td>Lorem</td>
 						<td>ipsum</td>
 						<td>dolor</td>
@@ -132,6 +132,13 @@
 </template>
 
 <script>
+	export default {
+		data(){
+			return {
+				
+			}
+		}
+	}
 </script>
 
 <style>

@@ -6,7 +6,8 @@
 
 <script>
 
-	var echarts = require('echarts')
+//	var echarts = require('echarts')
+	import echarts from 'echarts'
 	export default {
 		mounted(){
 			// 基于准备好的dom，初始化echarts实例
